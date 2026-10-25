@@ -1,0 +1,143 @@
+<title>写真名刺 価格表</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@800&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
+<style>
+/* Layout: 上に要約と比較メモ、下に絞り込みできる価格台帳 */
+:root{--bg:#f1eff2;--panel:#fff;--line:#dcd7de;--fg:#1c191e;--muted:#6d6570;--accent:#8f6b2c;--a:#2f5f8a;--b:#8a3f2f;
+  --display:"Shippori Mincho B1","Hiragino Mincho ProN",serif;--ui:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141215;--panel:#1d1a1f;--line:#332e36;--fg:#ede7e2;--muted:#9c939e;--accent:#d6b46e;--a:#86b4dc;--b:#e0907e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141215;--panel:#1d1a1f;--line:#332e36;--fg:#ede7e2;--muted:#9c939e;--accent:#d6b46e;--a:#86b4dc;--b:#e0907e;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--ui);font-size:14px;line-height:1.6;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+.wrap{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+h1{font-family:var(--display);font-size:clamp(24px,4vw,32px);margin:0;letter-spacing:.04em}
+.sub{color:var(--muted);margin:2px 0 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.card h2{font-size:13px;margin:0;letter-spacing:.06em}
+.card p,.card li{margin:0;color:var(--muted);font-size:13px}
+.card ul{margin:0;padding-left:1.2em}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;border:1px solid currentColor}
+.ta{color:var(--a)}.tb{color:var(--b)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+input,select{font:inherit;color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:7px 10px}
+input{flex:1;min-width:180px}
+input:focus,select:focus,th button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.count{color:var(--muted);font-size:12px}
+.tbl{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-variant-numeric:tabular-nums}
+th,td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:12px;color:var(--muted);font-weight:700;position:sticky;top:0;background:var(--panel)}
+th button{all:unset;cursor:pointer}
+td.num{text-align:right;white-space:nowrap}
+td.code{font-weight:700;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.dup{font-size:11px;color:var(--accent);font-weight:700}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>写真名刺 価格表</h1>
+    <p class="sub">サンプル帳の写真から書き起こした競合2社の価格です（2026年10月時点）。写真が不鮮明な箇所は「要確認」と付けています。</p>
+  </header>
+
+  <div class="cards">
+    <div class="card">
+      <h2><span class="tag ta">A</span> 写真名刺ファクトリー系（P/H/R/T）</h2>
+      <p>110枚・税込。初回校正費 +¥2,200（写真変更含む）。納期は通常2〜5営業日、特殊加工は10〜12営業日。</p>
+      <p>価格帯 <strong id="rangeA"></strong></p>
+    </div>
+    <div class="card">
+      <h2><span class="tag tb">B</span> AIDMAX（N）</h2>
+      <p>100枚・税別。初回作成費 +¥2,000（写真変更含む）。3回目以降の修正は +¥3,000。裏面印刷は別料金または不可。納期7〜30日。</p>
+      <p>価格帯 <strong id="rangeB"></strong></p>
+    </div>
+    <div class="card">
+      <h2>重複していた写真</h2>
+      <ul>
+        <li>R-01〜R-06 のページ（2枚）</li>
+        <li>P-13〜P-17 のページ（2枚）</li>
+        <li>N192〜N197 のページ（2枚）</li>
+      </ul>
+      <p>表には1回ずつだけ載せています。</p>
+    </div>
+    <div class="card">
+      <h2>同じデザインが別品番で再掲</h2>
+      <p>R（人気ランキング）はP・Hの再掲で、価格も同じものがあります：R-01＝P-17（¥17,000）、R-02＝P-32、R-03＝P-37（¥23,100）、R-04＝H-12（¥30,800）、R-05＝P-03、R-06＝P-42（¥56,200）。R-02・R-05はP版と価格差あり。</p>
+    </div>
+  </div>
+
+  <div class="tools">
+    <input id="q" type="search" placeholder="品番・特徴で検索（例：ホログラム、N19）">
+    <select id="vendor"><option value="">2社とも</option><option value="A">A 写真名刺ファクトリー系</option><option value="B">B AIDMAX</option></select>
+    <span class="count" id="count"></span>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead><tr>
+        <th><button data-k="code">品番</button></th>
+        <th>会社</th>
+        <th><button data-k="price">価格</button></th>
+        <th>枚数</th>
+        <th><button data-k="unit">1枚あたり</button></th>
+        <th>追加料金</th>
+        <th><button data-k="days">納期</button></th>
+        <th>見た目・備考</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <p class="sub">見た目・備考は写真からの推定です。1枚あたりは本体価格÷枚数で、校正費・税の差は含めていません（Bは税別なので税込にすると約1.1倍）。</p>
+</div>
+
+<script>
+// [品番, 会社, 価格, 枚数, 納期(表示), 納期(並べ替え用・日), 追加料金, 備考]
+const A='A',B='B',S='初回校正費+¥2,200',S5='2〜5営業日',S12='10〜12営業日';
+const D=[
+['P-01',A,3300,110,S5,5,S,''],['P-02',A,4400,110,S5,5,S,''],['P-03',A,8800,110,S5,5,S,'R-05と同デザイン'],['P-04',A,11100,110,S5,5,S,''],['P-05',A,11100,110,S5,5,S,'ホロ（ラメ）'],['P-06',A,11100,110,S5,5,S,''],
+['P-07',A,14400,110,S5,5,S,'箔押し'],['P-08',A,14400,110,S5,5,S,''],['P-09',A,11100,110,S5,5,S,''],['P-10',A,8800,110,S5,5,S,''],['P-11',A,8800,110,S5,5,S,''],['P-12',A,17600,110,S5,5,S,'クリア'],
+['P-13',A,19800,110,S5,5,S,'横型'],['P-14',A,19800,110,S5,5,S,'横型'],['P-15',A,22000,110,S5,5,S,'横型'],['P-16',A,17000,110,S5,5,S,'横型'],['P-17',A,17000,110,S5,5,S,'横型・R-01と同デザイン'],
+['P-18',A,34200,110,S12,12,S,'横型'],['P-19',A,39700,110,S12,12,S,'横型'],['P-20',A,49500,110,S12,12,S,'横型'],['P-21',A,48500,110,S5,5,S,'横型・メタリック'],['P-22',A,50700,110,S5,5,S,'横型'],
+['P-23',A,4400,110,S5,5,S,''],['P-24',A,5500,110,S5,5,S,''],['P-25',A,9900,110,S5,5,S,''],['P-26',A,12200,110,S5,5,S,''],['P-27',A,12200,110,S5,5,S,'ホロ（ラメ）'],['P-28',A,12200,110,S5,5,S,''],
+['P-29',A,15500,110,S5,5,S,'ホロ'],['P-30',A,15500,110,S5,5,S,''],['P-31',A,12200,110,S5,5,S,'価格は不鮮明・要確認'],['P-32',A,9900,110,S5,5,S,'R-02と同デザイン'],['P-33',A,9900,110,S5,5,S,''],['P-34',A,18700,110,S5,5,S,''],
+['P-35',A,20900,110,S5,5,S,''],['P-36',A,20900,110,S5,5,S,''],['P-37',A,23100,110,S5,5,S,'R-03と同デザイン'],['P-38',A,22500,110,S5,5,S,''],['P-39',A,34200,110,S5,5,S,''],['P-40',A,43000,110,S12,12,S,'金・メタリック'],
+['P-41',A,65000,110,S12,12,S,''],['P-42',A,56200,110,S5,5,S,'R-06と同デザイン'],['P-43',A,55000,110,S12,12,S,''],['P-44',A,34200,110,S12,12,S,''],['P-45',A,56200,110,S12,12,S,'お守り型（紐付き）・納期は一部隠れ要確認'],['P-46',A,30900,100,'20〜25営業日',25,S,'クリア・100枚'],
+['H-01',A,11000,110,S5,5,S,''],['H-02',A,11000,110,S5,5,S,''],['H-03',A,16600,110,S5,5,S,''],['H-04',A,16600,110,S5,5,S,''],['H-05',A,25300,110,S5,5,S,'箔押し'],['H-06',A,27500,110,S5,5,S,''],
+['H-07',A,12100,110,S5,5,S,''],['H-08',A,17700,110,S5,5,S,''],['H-09',A,17700,110,S5,5,S,''],['H-10',A,19900,110,S5,5,S,''],['H-11',A,28600,110,S5,5,S,''],['H-12',A,30800,110,S5,5,S,'金箔・R-04と同デザイン'],
+['R-01',A,17000,110,S5,5,S,'写真ランキング1位（P-17再掲）'],['R-02',A,9900,110,S5,5,S,'写真ランキング2位'],['R-03',A,23100,110,S5,5,S,'写真ランキング3位'],['R-04',A,30800,110,S5,5,S,'写真ランキング4位'],['R-05',A,8800,110,S5,5,S,'写真ランキング5位'],['R-06',A,56200,110,S5,5,S,'写真ランキング6位'],
+['R-07',A,8900,110,S5,5,'記載なし','文字ランキング1位・文字のみ'],['R-08',A,27600,110,S12,12,'記載なし','文字ランキング2位・青大理石'],['R-09',A,10000,110,S5,5,'記載なし','文字ランキング3位・金箔'],['R-10',A,50700,110,S5,5,'記載なし','文字ランキング4位・黒×金箔'],['R-11',A,6700,110,S5,5,'記載なし','文字ランキング5位・縦書き'],['R-12',A,6700,110,S5,5,'記載なし','文字ランキング6位・縦書き'],
+['T-19',A,43000,110,S5,5,'記載なし','文字のみ・メタル（シルバー）'],['T-20',A,27600,110,S12,12,'記載なし','文字のみ・黒大理石'],['T-21',A,33100,110,S12,12,'記載なし','文字のみ・青大理石'],['T-22',A,34200,110,S12,12,'記載なし','文字のみ・ピンク透明'],['T-23',A,34200,110,S12,12,'記載なし','文字のみ・グリーン透明'],['T-24',A,45200,110,S12,12,'記載なし','文字のみ・クリア'],
+['N164',B,24000,100,'7日',7,'裏面+¥5,000','ホログラム'],['N165',B,45000,100,'30日',30,'裏面+¥10,000','黒×金箔'],['N166',B,38000,100,'14日',14,'裏面印刷不可','ネオン'],['N167',B,35000,100,'14日',14,'裏面+¥10,000',''],['N168',B,40000,100,'30日',30,'裏面+¥12,000／箔押し+¥10,000','モノクロ'],['N169',B,35000,100,'14日',14,'裏面+¥10,000',''],
+['N170',B,24000,100,'7日',7,'裏面+¥5,000','ホログラム'],['N171',B,23000,100,'10日',10,'','見本なし（白紙）'],['N172',B,24000,100,'7日',7,'裏面+¥5,000','ホログラム'],['N173',B,30000,100,'25日',25,'裏面印刷不可',''],['N174',B,40000,100,'30日',30,'裏面+¥12,000／箔押し+¥10,000',''],['N175',B,30000,100,'25日',25,'裏面印刷不可',''],
+['N176',B,18000,100,'7日',7,'裏面印刷不可','横型'],['N177',B,23000,100,'7日',7,'','横型'],['N178',B,26000,100,'10日',10,'','横型'],['N179',B,31000,100,'10日',10,'','横型'],['N180',B,26000,100,'14日',14,'裏面+¥10,000','横型'],
+['N181',B,24000,100,'10日',10,'','横型・ゴールド'],['N182',B,23000,100,'10日',10,'','横型'],['N183',B,24000,100,'7日',7,'','横型・ホログラム'],['N184',B,40000,100,'30日',30,'裏面+¥10,000','横型'],['N185',B,33000,100,'10日',10,'裏面+¥3,000（半透明のため写真は非推奨）','横型・半透明'],
+['N186',B,38000,100,'14日',14,'裏面印刷不可／箔押し+¥10,000（納期+15日）','クリア'],['N187',B,33000,100,'14日',14,'','見本なし（白紙）'],['N188',B,22000,100,'7日',7,'','木目'],['N189',B,50000,100,'30日',30,'50枚なら¥30,000','台座付き（スタンド型）'],['N190',B,40000,100,'20日',20,'',''],['N191',B,18000,100,'10日',10,'裏面+¥3,000（半透明のため非推奨）','半透明'],
+['N192',B,30000,100,'30日',30,'裏面+¥10,000','レザー調・赤'],['N193',B,30000,100,'10日',10,'','めくるタイプ・データ4種×各25枚'],['N194',B,24000,100,'7日',7,'裏面+¥5,000','ホログラム'],['N195',B,50000,100,'30日',30,'',''],['N196',B,48000,100,'30日',30,'裏面+¥10,000','黒×金箔・縦書き'],['N197',B,20000,100,'10日',10,'裏面+¥3,000（半透明のため非推奨）','半透明']
+].map(r=>({code:r[0],v:r[1],price:r[2],qty:r[3],dayText:r[4],days:r[5],extra:r[6],note:r[7],unit:r[2]/r[3]}));
+
+const yen=n=>'¥'+n.toLocaleString('ja-JP');
+const range=v=>{const p=D.filter(d=>d.v===v).map(d=>d.price);return yen(Math.min(...p))+' 〜 '+yen(Math.max(...p))+'（'+p.length+'品番）'};
+document.getElementById('rangeA').textContent=range(A);
+document.getElementById('rangeB').textContent=range(B);
+const order=c=>{const m=c.match(/^([A-Z])-?(\d+)/);return m?'PHRTN'.indexOf(m[1])*1000+ +m[2]:0};
+let sortK='code',dir=1;
+function draw(){
+  const q=document.getElementById('q').value.trim().toLowerCase(), v=document.getElementById('vendor').value;
+  const list=D.filter(d=>(!v||d.v===v)&&(!q||(d.code+d.note+d.extra).toLowerCase().includes(q)))
+    .sort((a,b)=>dir*(sortK==='code'?order(a.code)-order(b.code):a[sortK]-b[sortK]));
+  document.getElementById('rows').innerHTML=list.map(d=>`<tr>
+    <td class="code">${d.code}</td>
+    <td><span class="tag ${d.v==='A'?'ta':'tb'}">${d.v}</span></td>
+    <td class="num">${yen(d.price)} <small>${d.v==='A'?'税込':'税別'}</small></td>
+    <td class="num">${d.qty}枚</td>
+    <td class="num">${yen(Math.round(d.unit))}</td>
+    <td>${d.extra}</td>
+    <td>${d.dayText}</td>
+    <td>${d.note}</td></tr>`).join('');
+  document.getElementById('count').textContent=list.length+'件';
+}
+document.querySelectorAll('th button').forEach(b=>b.onclick=()=>{const k=b.dataset.k;dir=sortK===k?-dir:1;sortK=k;draw()});
+document.getElementById('q').oninput=draw;document.getElementById('vendor').onchange=draw;
+draw();
+</script>

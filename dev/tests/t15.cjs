@@ -1,0 +1,20 @@
+const {chromium,devices}=require('playwright');(async()=>{
+const b=await chromium.launch();const ctx=await b.newContext({...devices['iPhone 13']});const pg=await ctx.newPage();
+const errs=[];pg.on('pageerror',e=>errs.push(e.message));
+const D='/tmp/claude-0/-home-claude/b1ff82af-d609-5ebc-83b3-1ba075ec48e1/scratchpad/';
+const open=async()=>{await pg.goto('file://'+D+'meishi-maker.html');await pg.evaluate(()=>{const m=document.createElement('meta');m.name='viewport';m.content='width=device-width,initial-scale=1';document.head.prepend(m)});await pg.waitForTimeout(800)};
+await open();await pg.screenshot({path:D+'u0.png'});
+await pg.tap('#startBtn');await pg.setInputFiles('#file',D+'ptest3.jpg');await pg.waitForTimeout(1200);await pg.screenshot({path:D+'u1.png'});
+await pg.tap('#bbNext');await pg.fill('#nameJa','天城 煌');await pg.fill('#nameEn','Kouki Amagi');await pg.tap('#bbNext');await pg.waitForTimeout(800);
+const bx=await pg.locator('#main').boundingBox();const cdp=await ctx.newCDPSession(pg);
+const c1=await pg.evaluate(()=>code(S.design));
+await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:bx.x+bx.width*.8,y:bx.y+bx.height/2}]});
+for(let i=1;i<=6;i++)await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:bx.x+bx.width*.8-i*20,y:bx.y+bx.height/2+i}]});
+await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await pg.waitForTimeout(300);
+const c2=await pg.evaluate(()=>code(S.design));console.log('swipe changed',c1!==c2);
+await pg.tap('#keepBtn');await pg.waitForTimeout(300);await pg.screenshot({path:D+'u3.png'});
+await pg.tap('#bbNext');await pg.tap('#bbNext');await pg.waitForTimeout(1200);
+const st=await pg.evaluate(()=>[S.step,S.keep.length,S.nameJa]);console.log('state',st);
+await open();console.log('after reload',await pg.evaluate(()=>[reached,S.nameJa,S.keep.length,S.userPhoto,code(S.design)]),'resume visible',await pg.isVisible('#resumeBox button'));
+await pg.screenshot({path:D+'u4.png'});
+console.log('errors',JSON.stringify(errs));await b.close();})();

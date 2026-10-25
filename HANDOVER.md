@@ -377,7 +377,14 @@ claude.aiのクラウド作業環境にあります。時間が経つと消え�
 - Playwrightのテストスクリプト：`t*.cjs`
 - 検査部のQA結果：`qa/`〜`qa4/`
 
-GitHubにあるのは `index.html`、`tess/`、`README.md` だけです。それ以外のファイルは、この作業環境が消えると失われます。
+このうち主要なものは、リポジトリの `dev/` に保存しました。
+- `dev/artifact-version.html`：アーティファクト版の本体
+- `dev/meishi-prices.html`：価格表
+- `dev/test-images/`：テスト画像
+- `dev/tests/`：Playwrightのテストスクリプト
+
+テストスクリプトの中のファイルパスは、旧作業環境のものです。使うときは書き換えてください。
+QAのスクリーンショット（数百MB）と旧版の `bak*.html` は保存していません。
 
 ---
 
